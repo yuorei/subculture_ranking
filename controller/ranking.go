@@ -51,3 +51,10 @@ func PutRegister(c *gin.Context) {
 	res.Rank = req.Rank
 	c.JSON(200, res)
 }
+
+func DeleteRegister(c *gin.Context){
+	// uuid:=c.Param("uuid")
+	// todo DBから削除
+
+	c.JSON(200,nil)
+}
