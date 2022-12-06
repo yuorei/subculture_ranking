@@ -11,5 +11,6 @@ func main() {
 	r.GET("/ranking/:user-id/:category-id", controller.GetRanking)
 	r.POST("/ranking/register",controller.PostRegister)
 	r.PUT("/ranking/register/:uuid",controller.PutRegister)
+	r.DELETE("/ranking/register/:uuid",controller.DeleteRegister)
 	r.Run()
 }
