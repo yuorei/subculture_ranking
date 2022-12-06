@@ -8,6 +8,6 @@ import (
 
 func main() {
 	r := gin.Default()
-	r.GET("/ranking/:user-id", controller.GetRanking)
+	r.GET("/ranking/:user-id/:category-id", controller.GetRanking)
 	r.Run()
 }
