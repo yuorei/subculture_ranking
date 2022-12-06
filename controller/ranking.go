@@ -27,10 +27,27 @@ func PostRegister(c *gin.Context) {
 	}
 	// todo DBにinsert
 	res.Uuid = uuid.New().String()
-	res.User_id=req.User_id
-	res.Category_id=req.Category_id
-	res.Title=req.Title
-	res.Comment=req.Comment
-	res.Rank=req.Rank
+	res.User_id = req.User_id
+	res.Category_id = req.Category_id
+	res.Title = req.Title
+	res.Comment = req.Comment
+	res.Rank = req.Rank
+	c.JSON(200, res)
+}
+
+func PutRegister(c *gin.Context) {
+	var req, res operateDb.Ranking
+	err := c.BindJSON(&req)
+	if err != nil {
+		c.JSON(400, err)
+		return
+	}
+	// todo DBにupdata
+	res.Uuid = c.Param("uuid")
+	res.User_id = req.User_id
+	res.Category_id = req.Category_id
+	res.Title = req.Title
+	res.Comment = req.Comment
+	res.Rank = req.Rank
 	c.JSON(200, res)
 }
