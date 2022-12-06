@@ -9,5 +9,6 @@ import (
 func main() {
 	r := gin.Default()
 	r.GET("/ranking/:user-id/:category-id", controller.GetRanking)
+	r.POST("/ranking/register",controller.PostRegister)
 	r.Run()
 }
