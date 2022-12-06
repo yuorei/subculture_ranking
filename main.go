@@ -1,8 +1,13 @@
 package main
-import(
-	"net/http"
+
+import (
+	"subculture_ranking/controller"
+
 	"github.com/gin-gonic/gin"
 )
-func mian(
 
-)
+func main() {
+	r := gin.Default()
+	r.GET("/ranking/:user-id", controller.GetRanking)
+	r.Run()
+}
