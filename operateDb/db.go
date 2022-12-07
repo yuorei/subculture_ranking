@@ -16,6 +16,7 @@ type Ranking struct {
 	Uuid        string `json:"uuid"`
 	User_id     int    `json:"user_id" gorm:"foreignKey:CompanyRefer"`
 	Title       string `json:"title"`
+	Image_base64 string `json:"image_base64"`
 	Category_id int    `json:"category_id" gorm:"foreignKey:CompanyRefer"`
 	Comment     string `json:"comment"`
 	Rank        int    `json:"rank"`

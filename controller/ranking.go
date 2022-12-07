@@ -30,6 +30,7 @@ func PostRegister(c *gin.Context) {
 	res.User_id = req.User_id
 	res.Category_id = req.Category_id
 	res.Title = req.Title
+	res.Image_base64=req.Image_base64
 	res.Comment = req.Comment
 	res.Rank = req.Rank
 	c.JSON(200, res)
@@ -47,6 +48,7 @@ func PutRegister(c *gin.Context) {
 	res.User_id = req.User_id
 	res.Category_id = req.Category_id
 	res.Title = req.Title
+	res.Image_base64=req.Image_base64
 	res.Comment = req.Comment
 	res.Rank = req.Rank
 	c.JSON(200, res)
