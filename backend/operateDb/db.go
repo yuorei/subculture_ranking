@@ -1,34 +1,34 @@
 package operateDb
 
 import (
+	"fmt"
+	"time"
+
+	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
 
-var db *gorm.DB
-
 // table
 type User struct {
-	gorm.Model
 	User_id int `gorm:"primaryKey"`
 }
-type Ranking struct {
-	gorm.Model
-	Uuid        string `json:"uuid"`
-	User_id     int    `json:"user_id" gorm:"foreignKey:CompanyRefer"`
-	Title       string `json:"title"`
-	Image_base64 string `json:"image_base64"`
-	Category_id int    `json:"category_id" gorm:"foreignKey:CompanyRefer"`
-	Comment     string `json:"comment"`
-	Rank        int    `json:"rank"`
-}
-type Category struct {
-	gorm.Model
-	Category_id int    `json:"Ccategory_id" gorm:"primaryKey"`
-	Category    string `json:"Ccategory"`
+
+type Profile struct {
+	User_id       int `gorm:"primaryKey"` //fkにする
+	Name          string
+	Age           uint
+	Genre_id      int
+	Profile_image int
+	CreatedAt     time.Time
+	UpdatedAt     time.Time
 }
 
-func Init() error {
-	return nil
+func Init() {
+	dsn := "host=localhost user=gorm password=gorm dbname=gorm port=9920 sslmode=disable TimeZone=Asia/Tokyo"
+	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
+	if err != nil {
+		fmt.Println(err)
+	}
 }
 
 func GetConnect() *gorm.DB {
