@@ -4,7 +4,7 @@ import "gorm.io/gorm"
 
 type Ranking_list struct {
 	gorm.Model
-	Uuid           string `gorm:"foreignKey:CompanyRefer"`
+	Uuid           string `gorm:"primaryKey" gorm:"foreignKey:CompanyRefer"`
 	User_id        int    ` gorm:"foreignKey:CompanyRefer"`
 	Title          string
 	Image_base64   string
