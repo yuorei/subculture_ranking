@@ -30,3 +30,12 @@ func PostUserProfile(c *gin.Context) {
 	db.Create(&res)
 	c.JSON(200,res)
 }
+
+func GetUserProfile(c *gin.Context){
+	var res table.User
+
+	db := db.ConnectDB()
+	db.Find(&res)
+	c.JSON(200, res)
+}
+
