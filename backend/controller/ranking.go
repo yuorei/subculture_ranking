@@ -18,3 +18,15 @@ func GetAllRankings(c *gin.Context) {
 	// todo 本当に必要なものだけを返す
 	c.JSON(200, res)
 }
+
+// /users
+func PostUserProfile(c *gin.Context) {
+	var res table.User
+	db := db.ConnectDB()
+	if err := c.BindJSON(&res);err!=nil{
+		c.JSON(400, err)
+		return
+	}
+	db.Create(&res)
+	c.JSON(200,res)
+}
