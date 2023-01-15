@@ -48,7 +48,6 @@ func PostUserRanking(c *gin.Context) {
 	uuidObj, _ := uuid.NewUUID()
 	res.Uuid = uuidObj.String()
 	res.CreatedAt = time.Now()
-	// todo サイトからのinputで入力を引数に入れる
 	data := tmdbapi.SearchTvGET(res.Title)
 	res.ImageURL = "https://image.tmdb.org/t/p/w500" + data.Results[0].Posterpath
 	res.Title = data.Results[0].Originalname
