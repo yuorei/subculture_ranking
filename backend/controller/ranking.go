@@ -19,6 +19,15 @@ func GetAllRankings(c *gin.Context) {
 	c.JSON(200, res)
 }
 
+
+func GetUserRanking(c *gin.Context) {
+	var res table.RankingList
+
+	db := db.ConnectDB()
+	db.Find(&res)
+	c.JSON(200, res)
+}
+
 // /users
 func PostUserProfile(c *gin.Context) {
 	var res table.User
