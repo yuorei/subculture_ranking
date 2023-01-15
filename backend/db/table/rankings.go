@@ -2,24 +2,24 @@ package table
 
 import "gorm.io/gorm"
 
-type Ranking_list struct {
+type RankingList struct {
 	gorm.Model
-	Uuid           string `gorm:"primaryKey" gorm:"foreignKey:CompanyRefer"`
-	User_id        int    ` gorm:"foreignKey:CompanyRefer"`
-	Title          string
-	Image_base64   string
-	Category_id    int ` gorm:"foreignKey:CompanyRefer"`
-	Genre_id       int ` gorm:"foreignKey:CompanyRefer"`
-	Rank           int
-	Poster_Comment string
+	Uuid          string `gorm:"primaryKey" gorm:"foreignKey:CompanyRefer"`
+	UserId        int    ` gorm:"foreignKey:CompanyRefer"`
+	Title         string
+	ImageURL      string
+	CategoryId    int ` gorm:"foreignKey:CompanyRefer"`
+	GenreId       int ` gorm:"foreignKey:CompanyRefer"`
+	Rank          int
+	PosterComment string
 }
 
 type Category struct {
-	Category_id int `gorm:"primaryKey"`
-	Category    string
+	CategoryId int `gorm:"primaryKey"`
+	Category   string
 }
 
 type Genre struct {
-	Genre_id int    `gorm:"primaryKey"`
-	Genre    string
+	GenreId int `gorm:"primaryKey"`
+	Genre   string
 }
