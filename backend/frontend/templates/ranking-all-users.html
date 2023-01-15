@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <ul id="list">
+            <a href=""></a>
+        </ul>
+        <script>
+            let url = '/ranking-data';
+
+            async function callAPI() {
+                let res = await fetch(url);
+                let jsonData = await res.json();
+
+                let ul = document.getElementById('list');
+                for (let i of jsonData) {
+                    let li = document.createElement('a');
+                    li.href="/ranking/"+i.UserId
+                    li.innerHTML =  "<li>"+i.Name+"<br></li>"
+                    ul.appendChild(li);
+                }
+            }
+            callAPI();
+        </script>
+    </body>
+</html>
