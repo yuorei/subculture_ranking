@@ -14,6 +14,9 @@ import (
 func GetIndex(c *gin.Context) {
 	c.HTML(http.StatusOK, "index.html", gin.H{})
 }
+func GetAllUsersHTML(c *gin.Context) {
+	c.HTML(http.StatusOK, "user-profile.html", gin.H{})
+}
 
 // /ranking
 func GetAllRankingUsers(c *gin.Context) {
@@ -33,7 +36,7 @@ func GetUserRankings(c *gin.Context) {
 	userId := c.Param("user-id")
 
 	db := db.ConnectDB()
-	db.Find(&res, userId)
+	db.Where("user_id = ?", userId).Find(&res)
 
 	c.JSON(200, res)
 }
