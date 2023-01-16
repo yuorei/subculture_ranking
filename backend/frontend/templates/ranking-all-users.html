@@ -15,10 +15,10 @@
 
                 let ul = document.getElementById('list');
                 for (let i of jsonData) {
-                    let li = document.createElement('a');
-                    li.href="/ranking/"+i.UseId
-                    li.innerHTML =  "<li>"+i.Name+"<br></li>"
-                    ul.appendChild(li);
+                    let a = document.createElement('a');
+                    a.href="/ranking/"+i.UseId
+                    a.innerHTML =  "<li>"+i.Name+"<br></li>"
+                    ul.appendChild(a);
                 }
             }
             callAPI();
