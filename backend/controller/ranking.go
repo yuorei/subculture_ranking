@@ -14,13 +14,18 @@ import (
 func GetIndex(c *gin.Context) {
 	c.HTML(http.StatusOK, "index.html", gin.H{})
 }
+
 func GetAllUsersHTML(c *gin.Context) {
 	c.HTML(http.StatusOK, "user-profile.html", gin.H{})
 }
 
-// /ranking
-func GetAllRankingUsers(c *gin.Context) {
+// ranking
+func GetAllRankingUsersHTML(c *gin.Context){
 	c.HTML(http.StatusOK, "ranking-all-users.html", gin.H{})
+}
+
+// /ranking-data
+func GetAllRankingUsers(c *gin.Context) {
 	var res []table.User
 
 	db := db.ConnectDB()
@@ -33,7 +38,7 @@ func GetAllRankingUsers(c *gin.Context) {
 func GetUserRankings(c *gin.Context) {
 	var res []table.RankingList
 
-	userId := c.Param("user-id")
+	userId := c.Param("name")
 
 	db := db.ConnectDB()
 	db.Where("user_id = ?", userId).Find(&res)
