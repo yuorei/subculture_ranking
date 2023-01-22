@@ -2,6 +2,7 @@ package controller
 
 import (
 	"net/http"
+	"strconv"
 	tmdbapi "subculture_ranking/TMDbAPI"
 	"subculture_ranking/db"
 	"subculture_ranking/db/table"
@@ -29,7 +30,7 @@ func GetUserRegisterHTML(c *gin.Context) {
 	c.HTML(http.StatusOK, "user-register.html", gin.H{})
 }
 
-// /ranking-register
+// /ranking-register/:user-id
 func GetRankingRegisterHTML(c *gin.Context) {
 	c.HTML(http.StatusOK, "ranking-register.html", gin.H{})
 }
@@ -37,6 +38,11 @@ func GetRankingRegisterHTML(c *gin.Context) {
 // /user-ranking
 func GetUserRankingHTML(c *gin.Context) {
 	c.HTML(http.StatusOK, "ranking-user.html", gin.H{})
+}
+
+// /users-html/:user-id
+func GetUserProfileHTML(c *gin.Context) {
+	c.HTML(http.StatusOK, "user-profile.html", gin.H{})
 }
 
 // /ranking-data
@@ -55,18 +61,21 @@ func GetUserRankings(c *gin.Context) {
 
 	userId := c.Param("user-id")
 	db := db.ConnectDB()
-	db.Where("user_id = ?", userId).Find(&res)
+	intUserId, _ := strconv.Atoi(userId)
+	db.Where("user_id = ?", intUserId).Find(&res)
 
 	c.JSON(200, res)
 }
 
 func PostUserRanking(c *gin.Context) {
+	userId := c.Param("user-id")
 	var res table.RankingList
 
 	if err := c.BindJSON(&res); err != nil {
 		c.JSON(400, err)
 		return
 	}
+	res.UserId, _ = strconv.Atoi(userId)
 	uuidObj, _ := uuid.NewUUID()
 	res.Uuid = uuidObj.String()
 	res.CreatedAt = time.Now()
