@@ -1,9 +1,13 @@
 const btn = document.querySelector('.btn');
-const url = '/ranking';
+const pass=window.location.pathname
+const words = pass.split('/');
+let url = '/ranking/'+words[2]
+
 
 const postFetch = () => {
     const data = {
         Title:  document.forms['form1'].elements['name'].value,
+        UserId: Number(words[2]),
     };
 
     fetch( url, {
