@@ -35,7 +35,7 @@ func GetRankingRegisterHTML(c *gin.Context) {
 	c.HTML(http.StatusOK, "ranking-register.html", gin.H{})
 }
 
-// /user-ranking
+// /user-ranking/:user-id
 func GetUserRankingHTML(c *gin.Context) {
 	c.HTML(http.StatusOK, "ranking-user.html", gin.H{})
 }
@@ -70,7 +70,6 @@ func GetUserRankings(c *gin.Context) {
 func PostUserRanking(c *gin.Context) {
 	userId := c.Param("user-id")
 	var res table.RankingList
-
 	if err := c.BindJSON(&res); err != nil {
 		c.JSON(400, err)
 		return
