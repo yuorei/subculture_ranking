@@ -4,10 +4,12 @@
     </head>
     <body>
         <ul id="list">
-            <a href=""></a>
+            
         </ul>
         <script>
-            let url = '/ranking-user-data';
+            const pass=window.location.pathname
+            const words = pass.split('/');
+            let url = '/ranking/'+words[2]
 
             async function callAPI() {
                 let res = await fetch(url);
@@ -16,9 +18,11 @@
                 let ul = document.getElementById('list');
                 for (let i of jsonData) {
                     let a = document.createElement('a');
-                    a.href="/ranking/"+i.UserId
-                    a.innerHTML =  "<li>"+i.Name+"<br></li>"
+                    let img = document.createElement('img');
+                    a.innerHTML =  "<li>ランキング"+i.Rank+"位 "+i.Title+"<br></li>"
+                    img.src=i.ImageURL
                     ul.appendChild(a);
+                    ul.appendChild(img);
                 }
             }
             callAPI();

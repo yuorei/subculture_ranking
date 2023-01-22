@@ -4,7 +4,7 @@ import (
 	"os"
 	"subculture_ranking/db/table"
 
-	"gorm.io/driver/postgres"
+	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
 
@@ -14,8 +14,9 @@ func Init() *gorm.DB {
 
 	var err error
 
-	dsn := "host=" + os.Getenv("DB_HOST") + " user=" + os.Getenv("DB_USER") + " password=" + os.Getenv("DB_PASS") + " dbname=" + os.Getenv("DB_NAME") + " port=" + os.Getenv("DB_PORT") + " sslmode=disable TimeZone=" + os.Getenv("TIMEZONE")
-	db, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
+	dsn := os.Getenv("DB_USER") + ":" + os.Getenv("DB_PASS") + "@tcp(" + os.Getenv("DB_PORT") + ")/" + os.Getenv("DB_NAME") + "?charset=utf8mb4&parseTime=True&loc=Local"
+	// db := gorm.Openにしてしまうと再宣言となっていまいエラーを起こす
+	db, err = gorm.Open(mysql.Open(dsn), &gorm.Config{})
 
 	if err != nil {
 		panic(err)
