@@ -29,6 +29,10 @@ func GetUserRegisterHTML(c *gin.Context){
 	c.HTML(http.StatusOK, "user-register.html", gin.H{})
 }
 
+// /user-ranking
+func GetUserRankingHTML(c *gin.Context){
+	c.HTML(http.StatusOK,"ranking-user.html",gin.H{})
+}
 // /ranking-data
 func GetAllRankingUsers(c *gin.Context) {
 	var res []table.User
