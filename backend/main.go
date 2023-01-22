@@ -22,6 +22,7 @@ func main() {
 	r.GET("/ranking", controller.GetAllRankingUsersHTML)
 	r.GET("/user-register", controller.GetUserRegisterHTML)
 	r.GET("/user-ranking", controller.GetUserRankingHTML)
+	r.GET("/ranking-register",controller.GetRankingRegisterHTML)
 
 	r.GET("/ranking-user-data", controller.GetAllRankingUsers)
 	r.GET("/ranking/:user-id", controller.GetUserRankings)
