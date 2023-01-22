@@ -1,3 +1,4 @@
+const btn = document.querySelector('.btn');
 const url = '/ranking';
 
 const postFetch = () => {
