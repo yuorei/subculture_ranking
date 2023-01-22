@@ -16,7 +16,7 @@
                 let ul = document.getElementById('list');
                 for (let i of jsonData) {
                     let a = document.createElement('a');
-                    a.href="/ranking/"+i.UseId
+                    a.href="/ranking/"+i.UserId
                     a.innerHTML =  "<li>"+i.Name+"<br></li>"
                     ul.appendChild(a);
                 }
