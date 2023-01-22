@@ -24,6 +24,11 @@ func GetAllRankingUsersHTML(c *gin.Context){
 	c.HTML(http.StatusOK, "ranking-all-users.html", gin.H{})
 }
 
+// /user-register
+func GetUserRegisterHTML(c *gin.Context){
+	c.HTML(http.StatusOK, "user-register.html", gin.H{})
+}
+
 // /ranking-data
 func GetAllRankingUsers(c *gin.Context) {
 	var res []table.User
@@ -38,7 +43,7 @@ func GetAllRankingUsers(c *gin.Context) {
 func GetUserRankings(c *gin.Context) {
 	var res []table.RankingList
 
-	userId := c.Param("name")
+	userId := c.Param("id")
 
 	db := db.ConnectDB()
 	db.Where("user_id = ?", userId).Find(&res)
