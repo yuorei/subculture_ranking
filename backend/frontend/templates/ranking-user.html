@@ -9,7 +9,7 @@
         <script>
             const pass=window.location.pathname
             const words = pass.split('/');
-            let url = '/ranking/'+word[1]//;':uesr-id';//パスパラメータからuserごとにAPI叩きたい
+            let url = '/ranking/'+words[1]
 
             async function callAPI() {
                 let res = await fetch(url);
