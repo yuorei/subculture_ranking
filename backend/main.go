@@ -18,11 +18,11 @@ func main() {
 	}
 	_ = db.Init()
 	r.GET("/", controller.GetIndex)
-	r.GET("/all-users",controller.GetAllUsersHTML)
+	r.GET("/all-users", controller.GetAllUsersHTML)
 	r.GET("/ranking", controller.GetAllRankingUsersHTML)
 	r.GET("/user-register", controller.GetUserRegisterHTML)
 	r.GET("/user-ranking/:user-id", controller.GetUserRankingHTML)
-	r.GET("/ranking-register/:user-id",controller.GetRankingRegisterHTML)
+	r.GET("/ranking-register/:user-id", controller.GetRankingRegisterHTML)
 	r.GET("/users-html/:user-id", controller.GetUserProfileHTML)
 
 	r.GET("/ranking-user-data", controller.GetAllRankingUsers)
