@@ -11,11 +11,12 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 )
-
+// /
 func GetIndex(c *gin.Context) {
 	c.HTML(http.StatusOK, "index.html", gin.H{})
 }
 
+// /all-users
 func GetAllUsersHTML(c *gin.Context) {
 	c.HTML(http.StatusOK, "user-profile.html", gin.H{})
 }
@@ -67,6 +68,7 @@ func GetUserRankings(c *gin.Context) {
 	c.JSON(200, res)
 }
 
+// /ranking/:user-id
 func PostUserRanking(c *gin.Context) {
 	userId := c.Param("user-id")
 	var res table.RankingList
@@ -103,6 +105,7 @@ func PostUserProfile(c *gin.Context) {
 	c.JSON(200, res)
 }
 
+// /users/:user-id
 func GetUserProfile(c *gin.Context) {
 	var res table.User
 	userId := c.Param("user-id")
