@@ -4,8 +4,9 @@
     </head>
     <body>
         <ul id="list">
-            <a href=""></a>
+
         </ul>
+        <a href="javascript:history.back()">[戻る]</a>
         <script>
             let url = '/ranking-user-data';
 
@@ -16,7 +17,7 @@
                 let ul = document.getElementById('list');
                 for (let i of jsonData) {
                     let a = document.createElement('a');
-                    a.href="/ranking/"+i.UserId
+                    a.href="/user-ranking/"+i.UserId
                     a.innerHTML =  "<li>"+i.Name+"<br></li>"
                     ul.appendChild(a);
                 }

@@ -3,6 +3,7 @@
         <meta charset="utf-8">
     </head>
     <body>
+        <div id="profile"></div>
         <ul id="list">
             
         </ul>
@@ -16,13 +17,21 @@
                 let jsonData = await res.json();
 
                 let ul = document.getElementById('list');
+                let profile = document.getElementById('profile');
+                let profileURL = document.createElement('a');
+                profileURL.href="/users-html/"+words[2]
+                profileURL.innerHTML="プロフィール"
+                profile.appendChild(profileURL);
                 for (let i of jsonData) {
                     let a = document.createElement('a');
                     let img = document.createElement('img');
-                    a.innerHTML =  "<li>ランキング"+i.Rank+"位 "+i.Title+"<br></li>"
+                    let comment = document.createElement('p');
+                    a.innerHTML =  "<h2>ランキング"+i.Rank+"位 "+i.Title+"<br><br></h2>"
                     img.src=i.ImageURL
+                    comment.innerHTML="<h3>投稿者からのコメント<br>"+i.PosterComment+"</h3>"
                     ul.appendChild(a);
                     ul.appendChild(img);
+                    ul.appendChild(comment);
                 }
             }
             callAPI();

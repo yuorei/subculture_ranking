@@ -4,8 +4,9 @@
     </head>
     <body>
         <ul id="list">
-            <a href=""></a>
+            
         </ul>
+        <a href="javascript:history.back()">[戻る]</a>
         <script>
             const pass=window.location.pathname
             const words = pass.split('/');
@@ -17,8 +18,11 @@
 
                 let ul = document.getElementById('list');
                 let a = document.createElement('a');
+                let user = document.createElement('h1');
                 a.href="/ranking-register/"+jsonData.UserId
+                user.innerHTML =  "<h1>"+jsonData.Name+"<br></h1>"
                 a.innerHTML =  "<li>ランキング登録<br></li>"
+                ul.appendChild(user);
                 ul.appendChild(a);
             }
             callAPI();

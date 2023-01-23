@@ -11,11 +11,12 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 )
-
+// /
 func GetIndex(c *gin.Context) {
 	c.HTML(http.StatusOK, "index.html", gin.H{})
 }
 
+// /all-users
 func GetAllUsersHTML(c *gin.Context) {
 	c.HTML(http.StatusOK, "user-profile.html", gin.H{})
 }
@@ -62,11 +63,12 @@ func GetUserRankings(c *gin.Context) {
 	userId := c.Param("user-id")
 	db := db.ConnectDB()
 	intUserId, _ := strconv.Atoi(userId)
-	db.Where("user_id = ?", intUserId).Find(&res)
+	db.Order("rank ASC").Where("user_id = ?", intUserId).Find(&res)
 
 	c.JSON(200, res)
 }
 
+// /ranking/:user-id
 func PostUserRanking(c *gin.Context) {
 	userId := c.Param("user-id")
 	var res table.RankingList
@@ -79,7 +81,7 @@ func PostUserRanking(c *gin.Context) {
 	res.Uuid = uuidObj.String()
 	res.CreatedAt = time.Now()
 	data := tmdbapi.SearchTvGET(res.Title)
-	res.ImageURL = "https://image.tmdb.org/t/p/w500" + data.Results[0].Posterpath
+	res.ImageURL = "https://image.tmdb.org/t/p/w200" + data.Results[0].Posterpath
 	res.Title = data.Results[0].Originalname
 
 	db := db.ConnectDB()
@@ -103,10 +105,12 @@ func PostUserProfile(c *gin.Context) {
 	c.JSON(200, res)
 }
 
+// /users/:user-id
 func GetUserProfile(c *gin.Context) {
 	var res table.User
-
+	userId := c.Param("user-id")
 	db := db.ConnectDB()
-	db.Find(&res)
+	intUserId, _ := strconv.Atoi(userId)
+	db.Where("user_id = ?", intUserId).Find(&res)
 	c.JSON(200, res)
 }
