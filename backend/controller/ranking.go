@@ -105,8 +105,9 @@ func PostUserProfile(c *gin.Context) {
 
 func GetUserProfile(c *gin.Context) {
 	var res table.User
-
+	userId := c.Param("user-id")
 	db := db.ConnectDB()
-	db.Find(&res)
+	intUserId, _ := strconv.Atoi(userId)
+	db.Where("user_id = ?", intUserId).Find(&res)
 	c.JSON(200, res)
 }
