@@ -25,10 +25,13 @@
                 for (let i of jsonData) {
                     let a = document.createElement('a');
                     let img = document.createElement('img');
-                    a.innerHTML =  "<li>ランキング"+i.Rank+"位 "+i.Title+"<br></li>"
+                    let comment = document.createElement('p');
+                    a.innerHTML =  "<h2>ランキング"+i.Rank+"位 "+i.Title+"<br><br></h2>"
                     img.src=i.ImageURL
+                    comment.innerHTML="<h3>投稿者からのコメント<br>"+i.PosterComment+"</h3>"
                     ul.appendChild(a);
                     ul.appendChild(img);
+                    ul.appendChild(comment);
                 }
             }
             callAPI();
