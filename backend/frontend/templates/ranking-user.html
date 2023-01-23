@@ -3,6 +3,7 @@
         <meta charset="utf-8">
     </head>
     <body>
+        <div id="profile"></div>
         <ul id="list">
             
         </ul>
@@ -16,6 +17,11 @@
                 let jsonData = await res.json();
 
                 let ul = document.getElementById('list');
+                let profile = document.getElementById('profile');
+                let profileURL = document.createElement('a');
+                profileURL.href="/users-html/"+words[2]
+                profileURL.innerHTML="プロフィール"
+                profile.appendChild(profileURL);
                 for (let i of jsonData) {
                     let a = document.createElement('a');
                     let img = document.createElement('img');
