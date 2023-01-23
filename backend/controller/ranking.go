@@ -62,7 +62,7 @@ func GetUserRankings(c *gin.Context) {
 	userId := c.Param("user-id")
 	db := db.ConnectDB()
 	intUserId, _ := strconv.Atoi(userId)
-	db.Where("user_id = ?", intUserId).Find(&res)
+	db.Order("rank ASC").Where("user_id = ?", intUserId).Find(&res)
 
 	c.JSON(200, res)
 }
@@ -79,7 +79,7 @@ func PostUserRanking(c *gin.Context) {
 	res.Uuid = uuidObj.String()
 	res.CreatedAt = time.Now()
 	data := tmdbapi.SearchTvGET(res.Title)
-	res.ImageURL = "https://image.tmdb.org/t/p/w500" + data.Results[0].Posterpath
+	res.ImageURL = "https://image.tmdb.org/t/p/w200" + data.Results[0].Posterpath
 	res.Title = data.Results[0].Originalname
 
 	db := db.ConnectDB()
