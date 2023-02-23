@@ -17,6 +17,9 @@ const postFetch = () => {
         .then((response) => response.json())
         .then((data) => {
             console.log('Success:', data);
+            alert("成功");
+            let form = document.getElementById("form");
+            form.reset();
         })
         .catch((error) => {
             console.error('Error:', error);

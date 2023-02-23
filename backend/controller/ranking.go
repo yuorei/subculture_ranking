@@ -81,7 +81,11 @@ func PostUserRanking(c *gin.Context) {
 	uuidObj, _ := uuid.NewUUID()
 	res.Uuid = uuidObj.String()
 	res.CreatedAt = time.Now()
-	data := tmdbapi.SearchTvGET(res.Title)
+	data, err := tmdbapi.SearchTvGET(res.Title)
+	if err != nil {
+		c.JSON(400, res)
+		return
+	}
 	res.ImageURL = "https://image.tmdb.org/t/p/w200" + data.Results[0].Posterpath
 	res.Title = data.Results[0].Originalname
 

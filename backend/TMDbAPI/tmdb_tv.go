@@ -17,23 +17,23 @@ type Result struct {
 	Posterpath   string `json:"poster_path"`
 }
 
-func SearchTvGET(query string) MovieInfomation {
+func SearchTvGET(query string) (MovieInfomation, error) {
+	var data MovieInfomation
 	url := "https://api.themoviedb.org/3/search/tv?api_key=" + os.Getenv("TMDBAPI") + "&page=1&query=" + query
 	res, err := http.Get(url)
 	if err != nil {
-		log.Fatal(err)
+		return data, err
 	}
 	defer res.Body.Close()
 	body, err := ioutil.ReadAll(res.Body)
 	if err != nil {
-		log.Fatal(err)
+		return data, err
 	}
 
-	var data MovieInfomation
 	if err := json.Unmarshal(body, &data); err != nil {
 		fmt.Println("err", err)
 		log.Fatal(err)
 	}
 
-	return data
+	return data, nil
 }

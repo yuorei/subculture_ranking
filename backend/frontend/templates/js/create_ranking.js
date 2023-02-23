@@ -20,12 +20,21 @@ const postFetch = () => {
         body: JSON.stringify(data),
     })
         // error処理
-        .then((response) => response.json())
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error(`リクエストに失敗 : $(response.status)`)
+            }
+            return response.json()
+        })
         .then((data) => {
             console.log('Success:', data);
+            alert("成功");
+            let form = document.getElementById("form");
+            form.reset();
         })
         .catch((error) => {
             console.error('Error:', error);
+            alert("タイトルを見つけられませんでした\n別のものを入力してください");
         });
 };
 
