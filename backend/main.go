@@ -1,21 +1,21 @@
 package main
 
 import (
+	"fmt"
 	"subculture_ranking/controller"
 	"subculture_ranking/db"
 
 	"github.com/gin-gonic/gin"
-	"github.com/joho/godotenv"
 )
 
 func main() {
 	r := gin.Default()
-	r.Static("/js", "./frontend/templates/js")
-	r.LoadHTMLGlob("./frontend/templates/*.html")
-	err := godotenv.Load(".env")
-	if err != nil {
-		panic(err)
-	}
+	// r.Static("/js", "./frontend/templates/js")
+	// r.LoadHTMLGlob("./frontend/templates/*.html")
+	// err := godotenv.Load(".env")
+	// if err != nil {
+	// 	panic(err)
+	// }
 	_ = db.Init()
 	r.GET("/", controller.GetIndex)
 	r.GET("/all-users", controller.GetAllUsersHTML)
@@ -30,5 +30,6 @@ func main() {
 	r.POST("/ranking/:user-id", controller.PostUserRanking)
 	r.GET("/users/:user-id", controller.GetUserProfile)
 	r.POST("/users", controller.PostUserProfile)
-	r.Run()
+	fmt.Println("サーバー起動成功")
+	r.Run(":3000")
 }

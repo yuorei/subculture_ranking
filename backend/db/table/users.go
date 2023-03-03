@@ -2,6 +2,8 @@ package table
 
 import "time"
 
+// import "time"
+
 type User struct {
 	UserId          int `gorm:"primaryKey"`
 	Name            string

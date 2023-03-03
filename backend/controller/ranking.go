@@ -1,6 +1,7 @@
 package controller
 
 import (
+	"fmt"
 	"net/http"
 	"strconv"
 	tmdbapi "subculture_ranking/TMDbAPI"
@@ -105,8 +106,15 @@ func PostUserProfile(c *gin.Context) {
 	}
 
 	db := db.ConnectDB()
-	db.Create(&res)
 
+	fmt.Println("3段階")
+	fmt.Println(res.UserId,res.Age,res.GenreId,res.Name,res.ProfileImageURL,res.CreatedAt)
+	// db.Create(&res)//失敗する
+	if err := db.Create(&res).Error; err != nil {
+		c.String(http.StatusBadRequest, "insert失敗"+err.Error())
+		return
+	}
+	fmt.Println("4段階")
 	c.JSON(200, res)
 }
 
